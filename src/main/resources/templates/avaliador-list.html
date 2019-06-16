@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Avaliador</title>
+    </head>
+    <body>
+        <h1>Avaliador</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Codigo de acesso</th>
+                    <th>Áreas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="avaliador: ${avaliadores}">
+                    <td th:text=${avaliador.id}></td>
+                    <td th:text=${avaliador.nome}></td>
+                    <td th:text=${avaliador.email}></td>
+                    <td th:text=${avaliador.codigoAcesso}></td>
+                    <td th:text=${avaliador.areas}></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
