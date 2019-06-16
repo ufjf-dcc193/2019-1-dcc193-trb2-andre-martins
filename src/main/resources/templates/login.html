@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Acesso</title>
+    </head>
+    <body>
+        <h1>Acesso</h1>
+        <a th:href="@{/}">Início</a> / Acesso<br />
+        <form th:action="@{/acesso/authenticate}" method="POST">
+            <label>E-mail: <input name="email" type="email" /></label><br />
+            <label>Código de acesso: <input name="token" type="password" /></label><br />
+            <button type="submit">Acessar</button>
+        </form>
+    </body>
+</html>

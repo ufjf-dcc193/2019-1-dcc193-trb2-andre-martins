@@ -12,12 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/trabalho")
-public class TrabalhoController {
+public class TrabalhoController
+{
     @Autowired
     TrabalhoRepository trabalhoRepo;
 
     @RequestMapping({"", "/", "/index"})
-    public ModelAndView list() {
+    public ModelAndView list()
+    {
         List<Trabalho> trabalhos = trabalhoRepo.findAll();
         ModelAndView mv = new ModelAndView();
         mv.setViewName("trabalho-list");
@@ -26,7 +28,8 @@ public class TrabalhoController {
     }
 
     @GetMapping("/create")
-    public ModelAndView create() {
+    public ModelAndView create()
+    {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("trabalho-create");
         mv.addObject("trabalho", new Trabalho());
@@ -34,14 +37,16 @@ public class TrabalhoController {
     }
 
     @PostMapping("/create")
-    public String create(Trabalho trabalho) {
+    public String create(Trabalho trabalho)
+    {
         trabalhoRepo.save(trabalho);
 
         return "redirect:/trabalho";
     }
 
     @RequestMapping("/{id}")
-    public ModelAndView read(@PathVariable Long id) {
+    public ModelAndView read(@PathVariable Long id)
+    {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("trabalho-read");
         mv.addObject("trabalho", trabalhoRepo.findById(id).get());
@@ -50,7 +55,8 @@ public class TrabalhoController {
     }
 
     @GetMapping("/{id}/update")
-    public ModelAndView update(@PathVariable Long id) {
+    public ModelAndView update(@PathVariable Long id)
+    {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("trabalho-update");
         Trabalho trabalho = trabalhoRepo.findById(id).get();
@@ -60,14 +66,16 @@ public class TrabalhoController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(Trabalho trabalho) {
+    public String update(Trabalho trabalho)
+    {
         trabalhoRepo.save(trabalho);
 
         return "redirect:/trabalho/{id}";
     }
 
     @RequestMapping("/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id)
+    {
 		trabalhoRepo.deleteById(id);
 
         return "redirect:/trabalho";

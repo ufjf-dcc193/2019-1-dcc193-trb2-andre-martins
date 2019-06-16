@@ -12,12 +12,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/avaliador")
-public class AvaliadorController {
+public class AvaliadorController
+{
     @Autowired
     AvaliadorRepository avaliadorRepo;
 
     @RequestMapping({"", "/", "/index"})
-    public ModelAndView list() {
+    public ModelAndView list()
+    {
         List<Avaliador> avaliadores = avaliadorRepo.findAll();
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-list");
@@ -26,7 +28,8 @@ public class AvaliadorController {
     }
 
     @GetMapping("/create")
-    public ModelAndView create() {
+    public ModelAndView create()
+    {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-create");
         mv.addObject("avaliador", new Avaliador());
@@ -34,14 +37,16 @@ public class AvaliadorController {
     }
 
     @PostMapping("/create")
-    public String create(Avaliador avaliador) {
+    public String create(Avaliador avaliador)
+    {
         avaliadorRepo.save(avaliador);
 
         return "redirect:/avaliador";
     }
 
     @RequestMapping("/{id}")
-    public ModelAndView read(@PathVariable Long id) {
+    public ModelAndView read(@PathVariable Long id)
+    {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-read");
         mv.addObject("avaliador", avaliadorRepo.findById(id).get());
@@ -50,7 +55,8 @@ public class AvaliadorController {
     }
 
     @GetMapping("/{id}/update")
-    public ModelAndView update(@PathVariable Long id) {
+    public ModelAndView update(@PathVariable Long id)
+    {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-update");
         Avaliador avaliador = avaliadorRepo.findById(id).get();
@@ -61,14 +67,16 @@ public class AvaliadorController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(Avaliador avaliador) {
+    public String update(Avaliador avaliador)
+    {
         avaliadorRepo.save(avaliador);
 
         return "redirect:/avaliador/{id}";
     }
 
     @RequestMapping("/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id)
+    {
 		avaliadorRepo.deleteById(id);
 
         return "redirect:/avaliador";
