@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Trabalho - Alterar</title>
+    </head>
+    <body>
+        <h1>Trabalho - Alterar</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/trabalho}">Trabalho</a> / <a th:href="@{/trabalho/{id}(id=*{id})}" th:text="*{id}"></a> / Atualizar<br />
+        <form th:action="@{/trabalho/{id}/update(id=*{id})}" th:object=${trabalho} method="POST">
+            <input name="id" type="hidden" th:value="*{id}" />
+            <p>ID: <span th:text=*{id}></span></p>
+            <label>Título: <input name="titulo" type="text" th:value="*{titulo}" /></label><br />
+            <label>Descrição: <input name="descricao" type="text" th:value="*{descricao}" /></label><br />
+            <label>Link de acesso: <input name="link" type="url" th:value="*{link}" /></label><br />
+            <label>Área de conhecimento: <input name="area" type="text" th:value="*{area}" /></label><br />
+            <button type="submit">Atualizar</button>
+        </form>
+    </body>
+</html>

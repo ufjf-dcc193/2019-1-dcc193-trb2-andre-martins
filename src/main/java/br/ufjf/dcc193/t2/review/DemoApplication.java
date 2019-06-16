@@ -24,7 +24,7 @@ public class DemoApplication {
 		Avaliador avaliador = new Avaliador("Eu", "eu@eu.eu", "acesso-eu", avaliadorAreas);
 		avaliadorRepo.save(avaliador);
 		
-		Trabalho trabalho = new Trabalho("Nome", "É um nome", "www.nome.com", "nomes");
+		Trabalho trabalho = new Trabalho("Nome", "É um nome", "https://www.nome.com", "nomes");
 		trabalhoRepo.save(trabalho);
 	}
 

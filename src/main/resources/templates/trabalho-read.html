@@ -11,7 +11,7 @@
             <li>ID: <span th:text=*{id}></span></li>
             <li>Título: <span th:text=*{titulo}></span></li>
             <li>Descrição: <span th:text=*{descricao}></span></li>
-            <li>Link de acesso: <a th:href=@{https://{link}(link=*{link})} th:text=*{link}></a></li>
+            <li>Link de acesso: <a th:href=*{link} th:text=*{link}></a></li>
             <li>Área de conhecimento: <span th:text=*{area}></span></li>
         </ul>
         <a th:href="@{/trabalho/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/trabalho/{id}/delete(id=*{id})}">Apagar</a>

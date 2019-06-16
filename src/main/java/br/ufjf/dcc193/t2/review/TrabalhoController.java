@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,23 +49,22 @@ public class TrabalhoController {
         return mv;
     }
 
-    // @GetMapping("/{id}/update")
-    // public ModelAndView update(@PathVariable Long id) {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("trabalho-update");
-    //     Trabalho trabalho = trabalhoRepo.findById(id).get();
-    //     mv.addObject("trabalho", trabalho);
-    //     mv.addObject("areas", String.join(", ", trabalho.getAreas()));
+    @GetMapping("/{id}/update")
+    public ModelAndView update(@PathVariable Long id) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("trabalho-update");
+        Trabalho trabalho = trabalhoRepo.findById(id).get();
+        mv.addObject("trabalho", trabalho);
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
-    // @PostMapping("/{id}/update")
-    // public String update(Trabalho trabalho) {
-    //     trabalhoRepo.save(trabalho);
+    @PostMapping("/{id}/update")
+    public String update(Trabalho trabalho) {
+        trabalhoRepo.save(trabalho);
 
-    //     return "redirect:/trabalho/{id}";
-    // }
+        return "redirect:/trabalho/{id}";
+    }
 
     @RequestMapping("/{id}/delete")
     public String delete(@PathVariable Long id) {
