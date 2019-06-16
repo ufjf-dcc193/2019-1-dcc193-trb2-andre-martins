@@ -6,6 +6,7 @@
     </head>
     <body>
         <h1>Avaliador</h1>
+        <a th:href="@{/}">Início</a> / Avaliador
 
         <table>
             <thead>
@@ -15,15 +16,17 @@
                     <th>E-mail</th>
                     <th>Codigo de acesso</th>
                     <th>Áreas de conhecimento</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="avaliador: ${avaliadores}" th:object=${avaliador}>
-                    <td><a th:text=${avaliador.id} th:href="@{./{id}(id=*{id})}"></a></td>
+                    <td><a th:text=${avaliador.id} th:href="@{/avaliador/{id}(id=*{id})}"></a></td>
                     <td th:text=${avaliador.nome}></td>
                     <td th:text=${avaliador.email}></td>
                     <td th:text=${avaliador.codigoAcesso}></td>
                     <td th:text=${avaliador.areas}></td>
+                    <td><a th:href="@{/avaliador/{id}/update(id=*{id})}">Alterar</a></td>
                 </tr>
             </tbody>
         </table>

@@ -14,7 +14,7 @@ public class AvaliadorController {
     @Autowired
     AvaliadorRepository avaliadorRepo;
 
-    @RequestMapping({"/", "index"})
+    @RequestMapping({"", "/", "index"})
     public ModelAndView list() {
         List<Avaliador> avaliadores = avaliadorRepo.findAll();
         ModelAndView mv = new ModelAndView();
@@ -30,5 +30,23 @@ public class AvaliadorController {
         mv.addObject("avaliador", avaliadorRepo.findById(id).get());
 
         return mv;
+    }
+
+    @RequestMapping("/{id}/update")
+    public ModelAndView update(@PathVariable Long id) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("avaliador-update");
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        mv.addObject("avaliador", avaliador);
+        mv.addObject("areas", String.join(", ", avaliador.getAreas()));
+
+        return mv;
+    }
+
+    @RequestMapping("/{id}/update-confirm")
+    public String updateConfirm(Avaliador avaliador) {
+        avaliadorRepo.save(avaliador);
+
+        return "redirect:/avaliador/{id}";
     }
 }

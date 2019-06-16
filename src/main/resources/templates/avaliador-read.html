@@ -2,10 +2,11 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Avaliador</title>
+        <title>Avaliador - Ver</title>
     </head>
     <body>
-        <h1>Avaliador</h1>
+        <h1>Avaliador - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/avaliador}">Avaliador</a> / <span th:text="*{id}"></span>
         <ul>
             <li>ID: <span th:text=${avaliador.id}></span></li>
             <li>Nome: <span th:text=${avaliador.nome}></span></li>
@@ -13,6 +14,6 @@
             <li>Codigo de acesso: <span th:text=${avaliador.codigoAcesso}></span></li>
             <li>Áreas de conhecimento: <span th:text=${avaliador.areas}></span></li>
         </ul>
-        <a th:href="@{.}">Voltar</a>
+        <a th:href="@{/avaliador/{id}/update(id=*{id})}">Alterar</a>
     </body>
 </html>
