@@ -14,12 +14,12 @@
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Codigo de acesso</th>
-                    <th>Áreas</th>
+                    <th>Áreas de conhecimento</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="avaliador: ${avaliadores}">
-                    <td th:text=${avaliador.id}></td>
+                <tr th:each="avaliador: ${avaliadores}" th:object=${avaliador}>
+                    <td><a th:text=${avaliador.id} th:href="@{./{id}(id=*{id})}"></a></td>
                     <td th:text=${avaliador.nome}></td>
                     <td th:text=${avaliador.email}></td>
                     <td th:text=${avaliador.codigoAcesso}></td>

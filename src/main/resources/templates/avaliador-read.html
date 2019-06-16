@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Avaliador</title>
+    </head>
+    <body>
+        <h1>Avaliador</h1>
+        <ul>
+            <li>ID: <span th:text=${avaliador.id}></span></li>
+            <li>Nome: <span th:text=${avaliador.nome}></span></li>
+            <li>E-mail: <span th:text=${avaliador.email}></span></li>
+            <li>Codigo de acesso: <span th:text=${avaliador.codigoAcesso}></span></li>
+            <li>Áreas de conhecimento: <span th:text=${avaliador.areas}></span></li>
+        </ul>
+        <a th:href="@{.}">Voltar</a>
+    </body>
+</html>
