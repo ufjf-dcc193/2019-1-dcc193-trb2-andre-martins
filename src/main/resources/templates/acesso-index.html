@@ -10,7 +10,7 @@
         <section>
             <h1>Olá, <span th:text=${avaliador.nome}></span>!</h1>
             <ul>
-                <li><a href="avaliador">Áreas</a></li>
+                <li><a th:href="@{/acesso/{id}/areas?token={token}(id=${avaliador.id}, token=${token})}">Áreas</a></li>
             </ul>
         </section>
     </body>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
+    </head>
+    <body>
+        <h1>Revisão de trabalhos</h1>
+
+        <p>Suas áreas de conhecimento:</p>
+        <ul>
+            <li th:each="area: ${areas}">
+                <a th:href="@{/acesso/{id}/areas/{area}?token={token}(id=${avaliador.id}, area=${area}, token=${token})}" th:text="${area}"></a>
+            </li>
+        </ul>
+    </body>
+</html>

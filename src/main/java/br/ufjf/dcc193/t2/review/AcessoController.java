@@ -55,13 +55,33 @@ public class AcessoController
         Avaliador avaliador = avaliadorRepo.findById(id).get();
         if (avaliador == null || !checkAccess(avaliador, token))
         {
-            // ToDo(andre:2019-06-16): Retornar uma mensagem informando que ocorreu um erro
             mv.setViewName("redirect:/acesso/login");
             return mv;
         }
 
         mv.setViewName("acesso-index");
         mv.addObject("avaliador", avaliador);
+        mv.addObject("token", token);
+        
+        return mv;
+    }
+
+    @RequestMapping("/{id}/areas")
+    public ModelAndView areas(@PathVariable Long id, String token)
+    {
+        ModelAndView mv = new ModelAndView();
+
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            mv.setViewName("redirect:/acesso/login");
+            return mv;
+        }
+
+        mv.setViewName("acesso-areas");
+        mv.addObject("avaliador", avaliador);
+        mv.addObject("areas", avaliador.getAreas());
+        mv.addObject("token", token);
         
         return mv;
     }
