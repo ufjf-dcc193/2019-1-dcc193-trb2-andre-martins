@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Trabalho - Ver</title>
+    </head>
+    <body>
+        <h1>Trabalho - Ver</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/trabalho}">Trabalho</a> / <span th:text="*{id}"></span><br />
+        <ul th:object=${trabalho}>
+            <li>ID: <span th:text=*{id}></span></li>
+            <li>Título: <span th:text=*{titulo}></span></li>
+            <li>Descrição: <span th:text=*{descricao}></span></li>
+            <li>Link de acesso: <a th:href=@{https://{link}(link=*{link})} th:text=*{link}></a></li>
+            <li>Área de conhecimento: <span th:text=*{area}></span></li>
+        </ul>
+        <a th:href="@{/trabalho/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/trabalho/{id}/delete(id=*{id})}">Apagar</a>
+    </body>
+</html>

@@ -26,7 +26,7 @@
                     <td><a th:text=*{id} th:href="@{/trabalho/{id}(id=*{id})}"></a></td>
                     <td th:text=*{titulo}></td>
                     <td th:text=*{descricao}></td>
-                    <td th:text=*{link}></td>
+                    <td><a th:href=@{https://{link}(link=*{link})} th:text=*{link}></a></td>
                     <td th:text=*{area}></td>
                     <td><a th:href="@{/trabalho/{id}(id=*{id})}">Ver</a> - <a th:href="@{/trabalho/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/trabalho/{id}/delete(id=*{id})}">Apagar</a></td>
                 </tr>

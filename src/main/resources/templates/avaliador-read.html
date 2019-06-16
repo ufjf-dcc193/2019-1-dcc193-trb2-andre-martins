@@ -7,14 +7,13 @@
     <body>
         <h1>Avaliador - Ver</h1>
         <a th:href="@{/}">Início</a> / <a th:href="@{/avaliador}">Avaliador</a> / <span th:text="*{id}"></span><br />
-        <ul>
-            <li>ID: <span th:text=${avaliador.id}></span></li>
-            <li>Nome: <span th:text=${avaliador.nome}></span></li>
-            <li>E-mail: <span th:text=${avaliador.email}></span></li>
-            <li>Codigo de acesso: <span th:text=${avaliador.codigoAcesso}></span></li>
-            <li>Áreas de conhecimento: <span th:text=${avaliador.areas}></span></li>
+        <ul th:object=${avaliador}>
+            <li>ID: <span th:text=*{id}></span></li>
+            <li>Nome: <span th:text=*{nome}></span></li>
+            <li>E-mail: <span th:text=*{email}></span></li>
+            <li>Codigo de acesso: <span th:text=*{codigoAcesso}></span></li>
+            <li>Áreas de conhecimento: <span th:text=*{areas}></span></li>
         </ul>
-        <a th:href="@{/avaliador/{id}/update(id=*{id})}">Alterar</a>
-        <a th:href="@{/avaliador/{id}/delete(id=*{id})}">Apagar</a>
+        <a th:href="@{/avaliador/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/avaliador/{id}/delete(id=*{id})}">Apagar</a>
     </body>
 </html>

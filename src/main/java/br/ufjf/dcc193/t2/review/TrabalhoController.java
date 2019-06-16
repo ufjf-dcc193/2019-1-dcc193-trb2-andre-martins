@@ -40,14 +40,14 @@ public class TrabalhoController {
     //     return "redirect:/trabalho";
     // }
 
-    // @RequestMapping("/{id}")
-    // public ModelAndView read(@PathVariable Long id) {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("trabalho-read");
-    //     mv.addObject("trabalho", trabalhoRepo.findById(id).get());
+    @RequestMapping("/{id}")
+    public ModelAndView read(@PathVariable Long id) {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("trabalho-read");
+        mv.addObject("trabalho", trabalhoRepo.findById(id).get());
 
-    //     return mv;
-    // }
+        return mv;
+    }
 
     // @GetMapping("/{id}/update")
     // public ModelAndView update(@PathVariable Long id) {
