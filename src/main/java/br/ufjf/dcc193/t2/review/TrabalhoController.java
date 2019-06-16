@@ -25,20 +25,20 @@ public class TrabalhoController {
         return mv;
     }
 
-    // @GetMapping("/create")
-    // public ModelAndView create() {
-    //     ModelAndView mv = new ModelAndView();
-    //     mv.setViewName("trabalho-create");
-    //     mv.addObject("trabalho", new Trabalho());
-    //     return mv;
-    // }
+    @GetMapping("/create")
+    public ModelAndView create() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("trabalho-create");
+        mv.addObject("trabalho", new Trabalho());
+        return mv;
+    }
 
-    // @PostMapping("/create")
-    // public String create(Trabalho sede) {
-    //     trabalhoRepo.save(sede);
+    @PostMapping("/create")
+    public String create(Trabalho trabalho) {
+        trabalhoRepo.save(trabalho);
 
-    //     return "redirect:/trabalho";
-    // }
+        return "redirect:/trabalho";
+    }
 
     @RequestMapping("/{id}")
     public ModelAndView read(@PathVariable Long id) {

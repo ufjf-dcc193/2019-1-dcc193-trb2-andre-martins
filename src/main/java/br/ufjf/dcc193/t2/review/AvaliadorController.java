@@ -34,8 +34,8 @@ public class AvaliadorController {
     }
 
     @PostMapping("/create")
-    public String create(Avaliador sede) {
-        avaliadorRepo.save(sede);
+    public String create(Avaliador avaliador) {
+        avaliadorRepo.save(avaliador);
 
         return "redirect:/avaliador";
     }
