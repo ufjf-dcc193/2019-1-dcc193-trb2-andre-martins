@@ -49,4 +49,11 @@ public class AvaliadorController {
 
         return "redirect:/avaliador/{id}";
     }
+
+    @RequestMapping("/{id}/delete")
+    public String delete(@PathVariable Long id) {
+		avaliadorRepo.deleteById(id);
+
+        return "redirect:/avaliador";
+    }
 }

@@ -26,7 +26,7 @@
                     <td th:text=${avaliador.email}></td>
                     <td th:text=${avaliador.codigoAcesso}></td>
                     <td th:text=${avaliador.areas}></td>
-                    <td><a th:href="@{/avaliador/{id}/update(id=*{id})}">Alterar</a></td>
+                    <td><a th:href="@{/avaliador/{id}(id=*{id})}">Ver</a> - <a th:href="@{/avaliador/{id}/update(id=*{id})}">Alterar</a> - <a th:href="@{/avaliador/{id}/delete(id=*{id})}">Apagar</a></td>
                 </tr>
             </tbody>
         </table>
