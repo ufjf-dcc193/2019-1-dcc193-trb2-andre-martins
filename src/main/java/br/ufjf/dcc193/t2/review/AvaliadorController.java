@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,13 +16,28 @@ public class AvaliadorController {
     @Autowired
     AvaliadorRepository avaliadorRepo;
 
-    @RequestMapping({"", "/", "index"})
+    @RequestMapping({"", "/", "/index"})
     public ModelAndView list() {
         List<Avaliador> avaliadores = avaliadorRepo.findAll();
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-list");
         mv.addObject("avaliadores", avaliadores);
         return mv;
+    }
+
+    @GetMapping("/create")
+    public ModelAndView create() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("avaliador-create");
+        mv.addObject("avaliador", new Avaliador());
+        return mv;
+    }
+
+    @PostMapping("/create")
+    public String create(Avaliador sede) {
+        avaliadorRepo.save(sede);
+
+        return "redirect:/avaliador";
     }
 
     @RequestMapping("/{id}")
@@ -32,7 +49,7 @@ public class AvaliadorController {
         return mv;
     }
 
-    @RequestMapping("/{id}/update")
+    @GetMapping("/{id}/update")
     public ModelAndView update(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("avaliador-update");
@@ -43,8 +60,8 @@ public class AvaliadorController {
         return mv;
     }
 
-    @RequestMapping("/{id}/update-confirm")
-    public String updateConfirm(Avaliador avaliador) {
+    @PostMapping("/{id}/update")
+    public String update(Avaliador avaliador) {
         avaliadorRepo.save(avaliador);
 
         return "redirect:/avaliador/{id}";

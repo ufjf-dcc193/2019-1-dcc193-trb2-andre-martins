@@ -2,14 +2,12 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Avaliador - Alterar</title>
+        <title>Avaliador - Cadastrar</title>
     </head>
     <body>
-        <h1>Avaliador - Alterar</h1>
-        <a th:href="@{/}">Início</a> / <a th:href="@{/avaliador}">Avaliador</a> / <a th:href="@{/avaliador/{id}(id=*{id})}" th:text="*{id}"></a> / Atualizar<br />
-        <form th:action="@{/avaliador/{id}/update(id=*{id})}" th:object=${avaliador} method="POST">
-            <input name="id" type="hidden" th:value="*{id}" />
-            <p>ID: <span th:text=*{id}></span></p>
+        <h1>Avaliador - Cadastar</h1>
+        <a th:href="@{/}">Início</a> / <a th:href="@{/avaliador}">Avaliador</a> / Cadastrar<br />
+        <form th:action="@{/avaliador/create}" th:object=${avaliador} method="POST">
             <label>Nome: <input name="nome" type="text" th:value="*{nome}" /></label><br />
             <label>E-mail: <input name="email" type="email" th:value="*{email}" /></label><br />
             <label>Codigo de acesso: <input name="codigoAcesso" type="password" th:value="*{codigoAcesso}" /></label><br />
