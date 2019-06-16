@@ -14,6 +14,7 @@ public class DemoApplication {
 		ConfigurableApplicationContext ctx = SpringApplication.run(DemoApplication.class, args);
 
 		AvaliadorRepository avaliadorRepo = ctx.getBean(AvaliadorRepository.class);
+		TrabalhoRepository trabalhoRepo = ctx.getBean(TrabalhoRepository.class);
 		
 		List<String> avaliadorAreas = new ArrayList<String>();
 		avaliadorAreas.add("eu");
@@ -21,8 +22,10 @@ public class DemoApplication {
 		avaliadorAreas.add("alguem");
 
 		Avaliador avaliador = new Avaliador("Eu", "eu@eu.eu", "acesso-eu", avaliadorAreas);
-
 		avaliadorRepo.save(avaliador);
+		
+		Trabalho trabalho = new Trabalho("Nome", "É um nome", "www.nome.com", "nomes");
+		trabalhoRepo.save(trabalho);
 	}
 
 }
