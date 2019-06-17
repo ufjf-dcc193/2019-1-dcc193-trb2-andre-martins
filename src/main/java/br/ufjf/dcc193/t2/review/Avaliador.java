@@ -3,12 +3,12 @@ package br.ufjf.dcc193.t2.review;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
-// import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-// import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Avaliador
@@ -22,8 +22,8 @@ public class Avaliador
     @ElementCollection
     private List<String> areas;
 
-    // @OneToMany(mappedBy = "avaliador", cascade = CascadeType.ALL)
-    // private List<Revisao> revisoes;
+    @OneToMany(mappedBy = "avaliador", cascade = CascadeType.ALL)
+    private List<Revisao> revisoes;
     
     public Avaliador()
     {
