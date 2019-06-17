@@ -113,7 +113,28 @@ public class AcessoController
         return mv;
     }
 
-    @GetMapping("/{id}/revisao/{tid}")
+    @GetMapping("/{id}/revisoes")
+    public ModelAndView revisoes(@PathVariable Long id, String token)
+    {
+        ModelAndView mv = new ModelAndView();
+
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            mv.setViewName("redirect:/acesso/login");
+            return mv;
+        }
+
+        mv.setViewName("acesso-revisoes-avaliador");
+        mv.addObject("avaliador", avaliador);
+        // mv.addObject("revisoes", revisaoRepo.findAllByAvaliadorId(id));
+        mv.addObject("revisoes", revisaoRepo.findAll());
+        mv.addObject("token", token);
+
+        return mv;
+    }
+
+    @GetMapping("/{id}/revisoes/{tid}")
     public ModelAndView revisao(@PathVariable Long id, @PathVariable Long tid, String token)
     {
         ModelAndView mv = new ModelAndView();
@@ -134,7 +155,7 @@ public class AcessoController
         return mv;
     }
 
-    @PostMapping(path = "/{id}/revisao/{tid}", params = "later")
+    @PostMapping(path = "/{id}/revisoes/{tid}", params = "later")
     public ModelAndView revisaoLater(@PathVariable Long id, @PathVariable Long tid, Revisao revisao, String token)
     {
         ModelAndView mv = new ModelAndView();
@@ -157,7 +178,7 @@ public class AcessoController
         return mv;
     }
 
-    @PostMapping(path = "/{id}/revisao/{tid}", params = "now")
+    @PostMapping(path = "/{id}/revisoes/{tid}", params = "now")
     public ModelAndView revisaoNow(@PathVariable Long id, @PathVariable Long tid, Revisao revisao, String token)
     {
         ModelAndView mv = new ModelAndView();
@@ -180,7 +201,7 @@ public class AcessoController
         return mv;
     }
 
-    @PostMapping(path = "/{id}/revisao/{tid}", params = "skip")
+    @PostMapping(path = "/{id}/revisoes/{tid}", params = "skip")
     public ModelAndView revisaoSkip(@PathVariable Long id, @PathVariable Long tid, Revisao revisao, String token)
     {
         ModelAndView mv = new ModelAndView();
@@ -202,5 +223,19 @@ public class AcessoController
         mv.setViewName("redirect:/acesso/{id}/areas/" + trabalho.getArea() + "?token=" + token);
         
         return mv;
+    }
+
+    @RequestMapping("/{id}/revisoes/{rid}/delete")
+    public String delete(@PathVariable Long id, @PathVariable Long rid, String token)
+    {
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            return "redirect:/acesso/login";
+        }
+
+		revisaoRepo.deleteById(rid);
+
+        return "redirect:/acesso/{id}/revisoes?token=" + token;
     }
 }

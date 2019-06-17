@@ -22,7 +22,7 @@
             </thead>
             <tbody>
                 <tr th:each="trabalho: ${trabalhos}" th:object=${trabalho}>
-                    <td><a th:text=*{id} th:href="@{/acesso/{id}/revisao/{tid}?token={token}(id=${avaliador.id}, tid=*{id}, token=${token})}"></a></td>
+                    <td><a th:text=*{id} th:href="@{/acesso/{id}/revisoes/{tid}?token={token}(id=${avaliador.id}, tid=*{id}, token=${token})}"></a></td>
                     <td th:text=*{titulo}></td>
                     <td th:text=*{descricao}></td>
                     <td><a th:href=*{link} th:text=*{link}></a></td>

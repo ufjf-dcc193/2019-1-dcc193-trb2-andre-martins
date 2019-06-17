@@ -8,7 +8,7 @@
         <h1>Trabalho - Revisão</h1>
         <a th:href="@{/}">Início</a>
         / <a th:href="@{/acesso/{id}?token={token}(id=${avaliador.id}, token=${token})}">Acesso</a>
-        / <a th:href="@{/acesso/{id}/revisao?token={token}(id=${avaliador.id}, token=${token})}">Avaliação</a>
+        / <a th:href="@{/acesso/{id}/revisoes?token={token}(id=${avaliador.id}, token=${token})}">Avaliação</a>
         / <span th:text="${trabalho.id}"></span><br />
         <ul th:object=${trabalho}>
             <li>ID: <span th:text=*{id}></span></li>
@@ -19,7 +19,7 @@
         </ul>
         <section>
             <h1>Revisão</h1>
-            <form th:action="@{/acesso/{id}/revisao/{tid}?token={token}(id=${avaliador.id}, tid=${trabalho.id}, token=${token})}" th:object=${revisao} method="POST">
+            <form th:action="@{/acesso/{id}/revisoes/{tid}?token={token}(id=${avaliador.id}, tid=${trabalho.id}, token=${token})}" th:object=${revisao} method="POST">
                 <label>Nota: <input name="nota" type="number" min="0" max="100" th:value="*{nota}" /></label><br />
                 <label>Descrição: <input name="descricao" type="text" th:value="*{descricao}" /></label><br />
                 <button name="later" type="submit">Revisar depois</button>

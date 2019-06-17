@@ -12,6 +12,7 @@
             <h1>Olá, <span th:text=${avaliador.nome}></span>!</h1>
             <ul>
                 <li><a th:href="@{/acesso/{id}/areas?token={token}(id=${avaliador.id}, token=${token})}">Áreas</a></li>
+                <li><a th:href="@{/acesso/{id}/revisoes?token={token}(id=${avaliador.id}, token=${token})}">Revisões</a></li>
             </ul>
         </section>
     </body>

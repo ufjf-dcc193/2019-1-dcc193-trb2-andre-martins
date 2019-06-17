@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Acesso - Área</title>
+    </head>
+    <body>
+        <h1>Acesso - Área</h1>
+        <a th:href="@{/}">Início</a>
+        / <a th:href="@{/acesso/{id}?token={token}(id=${avaliador.id}, token=${token})}">Acesso</a>
+        / Revisões<br />
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Nota</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="revisao: ${revisoes}" th:object=${revisao}>
+                    <td><a th:text=*{trabalho.id} th:href="@{/acesso/{id}/revisoes/{tid}?token={token}(id=${avaliador.id}, tid=*{trabalho.id}, token=${token})}"></a></td>
+                    <td th:text=*{trabalho.titulo}></td>
+                    <td th:text=*{nota}></td>
+                    <td th:text=*{descricao}></td>
+                    <td th:text="*{status == 0} ? 'A fazer' : (
+                                 *{status == 1} ? 'Avaliado' : (
+                                 *{status == 2} ? 'Impedido' : (
+                                 *{status == 3} ? 'Validado' :
+                                 'Invalidado')))"></td>
+                    <td><a th:href="@{/acesso/{id}/revisoes/{rid}/delete(id=${id}, rid=*{id}, token=${token})}">Apagar</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
