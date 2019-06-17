@@ -2,9 +2,9 @@ package br.ufjf.dcc193.t2.review;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-// import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +17,9 @@ public class AcessoController
 
     @Autowired
     TrabalhoRepository trabalhoRepo;
+
+    @Autowired
+    RevisaoRepository revisaoRepo;
 
     public Boolean checkAccess(Avaliador avaliador, String token)
     {
@@ -106,6 +109,97 @@ public class AcessoController
         mv.addObject("area", area);
         mv.addObject("trabalhos", trabalhoRepo.findAllByArea(area));
         mv.addObject("token", token);
+        
+        return mv;
+    }
+
+    @GetMapping("/{id}/revisao/{tid}")
+    public ModelAndView revisao(@PathVariable Long id, @PathVariable Long tid, String token)
+    {
+        ModelAndView mv = new ModelAndView();
+
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            mv.setViewName("redirect:/acesso/login");
+            return mv;
+        }
+
+        mv.setViewName("acesso-revisao");
+        mv.addObject("avaliador", avaliador);
+        mv.addObject("trabalho", trabalhoRepo.findById(tid).get());
+        mv.addObject("revisao", new Revisao());
+        mv.addObject("token", token);
+        
+        return mv;
+    }
+
+    @PostMapping(path = "/{id}/revisao/{tid}", params = "later")
+    public ModelAndView revisaoLater(@PathVariable Long id, @PathVariable Long tid, Revisao revisao, String token)
+    {
+        ModelAndView mv = new ModelAndView();
+
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            mv.setViewName("redirect:/acesso/login");
+            return mv;
+        }
+
+        Trabalho trabalho = trabalhoRepo.findById(tid).get();
+        revisao.setAvaliador(avaliador);
+        revisao.setTrabalho(trabalho);
+        revisao.setStatus(0);
+        revisaoRepo.save(revisao);
+
+        mv.setViewName("redirect:/acesso/{id}/areas/" + trabalho.getArea() + "?token=" + token);
+        
+        return mv;
+    }
+
+    @PostMapping(path = "/{id}/revisao/{tid}", params = "now")
+    public ModelAndView revisaoNow(@PathVariable Long id, @PathVariable Long tid, Revisao revisao, String token)
+    {
+        ModelAndView mv = new ModelAndView();
+
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            mv.setViewName("redirect:/acesso/login");
+            return mv;
+        }
+
+        Trabalho trabalho = trabalhoRepo.findById(tid).get();
+        revisao.setAvaliador(avaliador);
+        revisao.setTrabalho(trabalho);
+        revisao.setStatus(1);
+        revisaoRepo.save(revisao);
+
+        mv.setViewName("redirect:/acesso/{id}/areas/" + trabalho.getArea() + "?token=" + token);
+        
+        return mv;
+    }
+
+    @PostMapping(path = "/{id}/revisao/{tid}", params = "skip")
+    public ModelAndView revisaoSkip(@PathVariable Long id, @PathVariable Long tid, Revisao revisao, String token)
+    {
+        ModelAndView mv = new ModelAndView();
+
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            mv.setViewName("redirect:/acesso/login");
+            return mv;
+        }
+
+        Trabalho trabalho = trabalhoRepo.findById(tid).get();
+        revisao = new Revisao();
+        revisao.setAvaliador(avaliador);
+        revisao.setTrabalho(trabalho);
+        revisao.setStatus(2);
+        revisaoRepo.save(revisao);
+
+        mv.setViewName("redirect:/acesso/{id}/areas/" + trabalho.getArea() + "?token=" + token);
         
         return mv;
     }

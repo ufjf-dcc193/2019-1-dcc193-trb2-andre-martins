@@ -13,7 +13,7 @@ public class Revisao {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private Integer nota;
-    private String descrição;
+    private String descricao;
     private Integer status;
 
     @ManyToOne
@@ -27,10 +27,10 @@ public class Revisao {
     public Revisao()
     {
     }
-    public Revisao(Integer nota, String descrição, Integer status)
+    public Revisao(Integer nota, String descricao, Integer status)
     {
         this.nota = nota;
-        this.descrição = descrição;
+        this.descricao = descricao;
         this.status = status;
     }
 
@@ -52,13 +52,13 @@ public class Revisao {
         this.nota = nota;
     }
 
-    public String getDescrição()
+    public String getDescricao()
     {
-        return descrição;
+        return descricao;
     }
-    public void setDescrição(String descrição)
+    public void setDescricao(String descricao)
     {
-        this.descrição = descrição;
+        this.descricao = descricao;
     }
 
     public Integer getStatus()
