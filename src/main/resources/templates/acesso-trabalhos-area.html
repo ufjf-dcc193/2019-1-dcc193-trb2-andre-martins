@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Acesso - Área</title>
+    </head>
+    <body>
+        <h1>Acesso - Área</h1>
+        <a th:href="@{/}">Início</a>
+        / <a th:href="@{/acesso/{id}?token={token}(id=${avaliador.id}, token=${token})}">Acesso</a>
+        / <a th:href="@{/acesso/{id}/areas?token={token}(id=${avaliador.id}, token=${token})}">Áreas</a>
+        / <span th:text="${area}"></span><br />
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Link de acesso</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="trabalho: ${trabalhos}" th:object=${trabalho}>
+                    <td><a th:text=*{id} th:href="@{/trabalho/{id}(id=*{id})}"></a></td>
+                    <td th:text=*{titulo}></td>
+                    <td th:text=*{descricao}></td>
+                    <td><a th:href=*{link} th:text=*{link}></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

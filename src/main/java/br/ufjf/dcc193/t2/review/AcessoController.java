@@ -15,6 +15,9 @@ public class AcessoController
     @Autowired
     AvaliadorRepository avaliadorRepo;
 
+    @Autowired
+    TrabalhoRepository trabalhoRepo;
+
     public Boolean checkAccess(Avaliador avaliador, String token)
     {
         return avaliador.getCodigoAcesso().equals(token);
@@ -81,6 +84,27 @@ public class AcessoController
         mv.setViewName("acesso-areas");
         mv.addObject("avaliador", avaliador);
         mv.addObject("areas", avaliador.getAreas());
+        mv.addObject("token", token);
+        
+        return mv;
+    }
+
+    @RequestMapping("/{id}/areas/{area}")
+    public ModelAndView area(@PathVariable Long id, @PathVariable String area, String token)
+    {
+        ModelAndView mv = new ModelAndView();
+
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            mv.setViewName("redirect:/acesso/login");
+            return mv;
+        }
+
+        mv.setViewName("acesso-trabalhos-area");
+        mv.addObject("avaliador", avaliador);
+        mv.addObject("area", area);
+        mv.addObject("trabalhos", trabalhoRepo.findAllByArea(area));
         mv.addObject("token", token);
         
         return mv;

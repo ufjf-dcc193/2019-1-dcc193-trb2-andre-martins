@@ -2,10 +2,13 @@
 <html lang="pt" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Home</title>
+        <title>Acesso - Áreas</title>
     </head>
     <body>
-        <h1>Revisão de trabalhos</h1>
+        <h1>Acesso - Áreas</h1>
+        <a th:href="@{/}">Início</a>
+        / <a th:href="@{/acesso/{id}?token={token}(id=${avaliador.id}, token=${token})}">Acesso</a>
+        / Áreas<br />
 
         <p>Suas áreas de conhecimento:</p>
         <ul>
