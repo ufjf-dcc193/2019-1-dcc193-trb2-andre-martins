@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TrabalhoRepository extends JpaRepository<Trabalho, Long> {
     List<Trabalho> findAllByArea(String area);
+    // List<Trabalho> findAllByAreaOrderByQuantRevisoes(String area);
 }

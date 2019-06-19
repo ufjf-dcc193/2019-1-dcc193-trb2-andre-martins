@@ -18,6 +18,7 @@
                     <th>Título</th>
                     <th>Descrição</th>
                     <th>Link de acesso</th>
+                    <th>Quantidade de revisões</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@
                     <td th:text=*{titulo}></td>
                     <td th:text=*{descricao}></td>
                     <td><a th:href=*{link} th:text=*{link}></a></td>
+                    <td th:text=*{quantRevisoes}></td>
                 </tr>
             </tbody>
         </table>

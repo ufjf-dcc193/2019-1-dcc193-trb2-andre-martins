@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
+import javax.persistence.Transient;
 
 @Entity
 public class Trabalho
@@ -20,9 +23,12 @@ public class Trabalho
     private String link;
     private String area;
 
-    @OneToMany(mappedBy = "avaliador", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "avaliador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Revisao> revisoes;
     
+    @Transient
+    private Integer quantRevisoes;
+
     public Trabalho()
     {
     }
@@ -69,8 +75,21 @@ public class Trabalho
         this.area = area;
     }
     
-    // public List<Revisao> getRevisoes()
-    // {
-    //     return revisoes;
-    // }
+    public List<Revisao> getRevisoes()
+    {
+        return revisoes;
+    }
+
+    @PostLoad
+    private void postLoad()
+    {
+        this.quantRevisoes = 0;
+        // this.quantRevisoes = getRevisoes().size();
+    }
+
+    @Transient
+    public Integer getQuantRevisoes()
+    {
+        return quantRevisoes;
+    }
 }

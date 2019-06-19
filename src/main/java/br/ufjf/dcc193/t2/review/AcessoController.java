@@ -110,6 +110,7 @@ public class AcessoController
         mv.addObject("avaliador", avaliador);
         mv.addObject("area", area);
         mv.addObject("trabalhos", trabalhoRepo.findAllByArea(area));
+        // mv.addObject("trabalhos", trabalhoRepo.findAllByAreaOrderByQuantRevisoes(area));
         mv.addObject("token", token);
         
         return mv;
