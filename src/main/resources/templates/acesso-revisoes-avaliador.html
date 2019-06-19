@@ -32,7 +32,12 @@
                                  *{status == 2} ? 'Impedido' : (
                                  *{status == 3} ? 'Validado' :
                                  'Invalidado')))"></td>
-                    <td><a th:href="@{/acesso/{id}/revisoes/{rid}/delete(id=${id}, rid=*{id}, token=${token})}">Apagar</a></td>
+                    <td>
+                        <a th:href="@{/acesso/{id}/revisoes/{rid}/evaluated(id=${id}, rid=*{id}, token=${token})}">Avaliado</a>
+                        - <a th:href="@{/acesso/{id}/revisoes/{rid}/validated(id=${id}, rid=*{id}, token=${token})}">Validar</a>
+                        - <a th:href="@{/acesso/{id}/revisoes/{rid}/invalidated(id=${id}, rid=*{id}, token=${token})}">Invalidar</a>
+                        - <a th:href="@{/acesso/{id}/revisoes/{rid}/delete(id=${id}, rid=*{id}, token=${token})}">Apagar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

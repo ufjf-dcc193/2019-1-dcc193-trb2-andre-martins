@@ -8,7 +8,7 @@
         <h1>Trabalho - Revisão</h1>
         <a th:href="@{/}">Início</a>
         / <a th:href="@{/acesso/{id}?token={token}(id=${avaliador.id}, token=${token})}">Acesso</a>
-        / <a th:href="@{/acesso/{id}/revisoes?token={token}(id=${avaliador.id}, token=${token})}">Avaliação</a>
+        / <a th:href="@{/acesso/{id}/revisoes?token={token}(id=${avaliador.id}, token=${token})}">Revisões</a>
         / <span th:text="${trabalho.id}"></span><br />
         <ul th:object=${trabalho}>
             <li>ID: <span th:text=*{id}></span></li>

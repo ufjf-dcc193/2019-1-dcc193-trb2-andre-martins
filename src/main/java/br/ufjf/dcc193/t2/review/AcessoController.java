@@ -238,4 +238,52 @@ public class AcessoController
 
         return "redirect:/acesso/{id}/revisoes?token=" + token;
     }
+
+    @RequestMapping("/{id}/revisoes/{rid}/evaluated")
+    public String evaluated(@PathVariable Long id, @PathVariable Long rid, String token)
+    {
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            return "redirect:/acesso/login";
+        }
+
+        Revisao revisao = revisaoRepo.findById(rid).get();
+        revisao.setStatus(1);
+        revisaoRepo.save(revisao);
+
+        return "redirect:/acesso/{id}/revisoes?token=" + token;
+    }
+
+    @RequestMapping("/{id}/revisoes/{rid}/validated")
+    public String validated(@PathVariable Long id, @PathVariable Long rid, String token)
+    {
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            return "redirect:/acesso/login";
+        }
+
+        Revisao revisao = revisaoRepo.findById(rid).get();
+        revisao.setStatus(3);
+        revisaoRepo.save(revisao);
+
+        return "redirect:/acesso/{id}/revisoes?token=" + token;
+    }
+
+    @RequestMapping("/{id}/revisoes/{rid}/invalidated")
+    public String invalidated(@PathVariable Long id, @PathVariable Long rid, String token)
+    {
+        Avaliador avaliador = avaliadorRepo.findById(id).get();
+        if (avaliador == null || !checkAccess(avaliador, token))
+        {
+            return "redirect:/acesso/login";
+        }
+
+        Revisao revisao = revisaoRepo.findById(rid).get();
+        revisao.setStatus(4);
+        revisaoRepo.save(revisao);
+
+        return "redirect:/acesso/{id}/revisoes?token=" + token;
+    }
 }
