@@ -1,5 +1,7 @@
 package br.ufjf.dcc193.t2.review;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -127,8 +129,9 @@ public class AcessoController
 
         mv.setViewName("acesso-revisoes-avaliador");
         mv.addObject("avaliador", avaliador);
-        // mv.addObject("revisoes", revisaoRepo.findAllByAvaliadorId(id));
-        mv.addObject("revisoes", revisaoRepo.findAll());
+        mv.addObject("revisoes", revisaoRepo.findAllByAvaliadorIdAndStatusIn(id, Arrays.asList(1)));
+        // mv.addObject("revisoes", revisaoRepo.findAllByAvaliadorId(id)); // NOTE(andre:2019-06-19): Apenas para debug
+        // mv.addObject("revisoes", revisaoRepo.findAll()); // NOTE(andre:2019-06-19): Apenas para debug
         mv.addObject("token", token);
 
         return mv;
