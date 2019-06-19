@@ -21,9 +21,9 @@ public class Revisao {
     private Avaliador avaliador;
 
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "trabalho_id")
     private Trabalho trabalho;
-    
+
     public Revisao()
     {
     }
@@ -69,14 +69,14 @@ public class Revisao {
     {
         this.status = status;
     }
-    
+
     public Avaliador getAvaliador() {
         return avaliador;
     }
     public void setAvaliador(Avaliador avaliador) {
         this.avaliador = avaliador;
     }
-    
+
     public Trabalho getTrabalho() {
         return trabalho;
     }

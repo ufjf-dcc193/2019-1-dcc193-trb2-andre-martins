@@ -9,8 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.PostLoad;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Formula;
 
 @Entity
 public class Trabalho
@@ -23,10 +24,10 @@ public class Trabalho
     private String link;
     private String area;
 
-    @OneToMany(mappedBy = "avaliador", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "trabalho", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Revisao> revisoes;
-    
-    @Transient
+
+    @Formula("(select count(*) from revisao r where r.trabalho_id = id)")
     private Integer quantRevisoes;
 
     public Trabalho()
@@ -74,17 +75,10 @@ public class Trabalho
     public void setArea(String area) {
         this.area = area;
     }
-    
+
     public List<Revisao> getRevisoes()
     {
         return revisoes;
-    }
-
-    @PostLoad
-    private void postLoad()
-    {
-        this.quantRevisoes = 0;
-        // this.quantRevisoes = getRevisoes().size();
     }
 
     @Transient

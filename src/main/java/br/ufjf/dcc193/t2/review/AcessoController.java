@@ -70,7 +70,7 @@ public class AcessoController
         mv.setViewName("acesso-index");
         mv.addObject("avaliador", avaliador);
         mv.addObject("token", token);
-        
+
         return mv;
     }
 
@@ -90,7 +90,7 @@ public class AcessoController
         mv.addObject("avaliador", avaliador);
         mv.addObject("areas", avaliador.getAreas());
         mv.addObject("token", token);
-        
+
         return mv;
     }
 
@@ -109,10 +109,10 @@ public class AcessoController
         mv.setViewName("acesso-trabalhos-area");
         mv.addObject("avaliador", avaliador);
         mv.addObject("area", area);
-        mv.addObject("trabalhos", trabalhoRepo.findAllByArea(area));
-        // mv.addObject("trabalhos", trabalhoRepo.findAllByAreaOrderByQuantRevisoes(area));
+        // mv.addObject("trabalhos", trabalhoRepo.findAllByArea(area));
+        mv.addObject("trabalhos", trabalhoRepo.findAllByAreaOrderByQuantRevisoesAsc(area));
         mv.addObject("token", token);
-        
+
         return mv;
     }
 
@@ -155,7 +155,7 @@ public class AcessoController
         mv.addObject("trabalho", trabalhoRepo.findById(tid).get());
         mv.addObject("revisao", new Revisao());
         mv.addObject("token", token);
-        
+
         return mv;
     }
 
@@ -178,7 +178,7 @@ public class AcessoController
         revisaoRepo.save(revisao);
 
         mv.setViewName("redirect:/acesso/{id}/areas/" + trabalho.getArea() + "?token=" + token);
-        
+
         return mv;
     }
 
@@ -201,7 +201,7 @@ public class AcessoController
         revisaoRepo.save(revisao);
 
         mv.setViewName("redirect:/acesso/{id}/areas/" + trabalho.getArea() + "?token=" + token);
-        
+
         return mv;
     }
 
@@ -225,7 +225,7 @@ public class AcessoController
         revisaoRepo.save(revisao);
 
         mv.setViewName("redirect:/acesso/{id}/areas/" + trabalho.getArea() + "?token=" + token);
-        
+
         return mv;
     }
 
